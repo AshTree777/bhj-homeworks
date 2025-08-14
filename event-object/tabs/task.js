@@ -6,7 +6,7 @@ tabNavigation.addEventListener('click', event => {
     
     let indexNavigation = tab.indexOf(event.target);
 
-    for (indexContent = 0; indexContent < tabContent.length; indexContent++) {
+    for (let indexContent = 0; indexContent < tabContent.length; indexContent++) {
         tab[indexContent].classList.remove('tab_active');
         tabContent[indexContent].classList.remove('tab__content_active');
 
