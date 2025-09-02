@@ -2,34 +2,30 @@ const formTasks = document.getElementById('tasks__form');
 const taskInput = document.getElementById('task__input');
 taskInput.setAttribute('required', '');
 
-taskInput.addEventListener('keydown', () => {
-})
-
 formTasks.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const tasksList = document.querySelector('.tasks__list');
+    if (taskInput.value.trim().length !== 0) {
 
-    const divTasks = document.createElement('div');
-    divTasks.className = 'task';
-    tasksList.appendChild(divTasks);
+        const tasksList = document.querySelector('.tasks__list');
+        tasksList.insertAdjacentHTML('afterbegin', `
+            <div class="task">
+                <div class="task__title">
+                    ${taskInput.value}  
+                </div>
+                <a href="#" class="task__remove">&times;</a>
+            </div>`
+        );
 
-    const task = document.querySelector('.task');
+        const taskRemove = document.querySelector('.task__remove');
+        const task = document.querySelector('.task');
+        taskRemove.addEventListener('click', () => {
+            task.remove('div');
+        })
 
-    const divTasksTitle = document.createElement('div');
-    divTasksTitle.className = 'task__title';
-    divTasksTitle.textContent = taskInput.value;
-    divTasks.appendChild(divTasksTitle);
-
-    const taskRemove = document.createElement('a');
-    taskRemove.href = "#";
-    taskRemove.className = 'task__remove';
-    taskRemove.innerHTML = '&times;';
-    divTasks.appendChild(taskRemove);
-
-    taskRemove.addEventListener('click', () => {
-        divTasks.remove('div');
-    })
+    } else {
+        alert('Вы не заполнили это поле');
+    }
 
     formTasks.reset();
 })
