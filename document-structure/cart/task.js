@@ -26,9 +26,8 @@ for (let i = 0; i < products.length; i++) {
             selectedProduct.dataset.id == products[i].dataset.id);
 
         if (productInCart) {
-            let productInCartValue = document.querySelectorAll('.cart__product-count');
-            productInCartValue[i].textContent =
-                Number(productInCartValue[i].textContent) +
+            productInCart.querySelector('.cart__product-count').textContent =
+                Number(productInCart.querySelector('.cart__product-count').textContent) +
                 Number(productQuantityValue[i].textContent);
         } else {
             cartProducts.insertAdjacentHTML('beforeend', `
